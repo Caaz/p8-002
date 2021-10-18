@@ -1,6 +1,6 @@
 _.states['game'] = {
   init = function(this)
-    this.world = World{}
+    this.world = world{}
   end,
   update = function()
     -- print'hello world'

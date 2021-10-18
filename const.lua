@@ -1,2 +1,2 @@
-WORLD_SIZE = 16
-TILE_SIZE = 8
+world_size = 16
+tile_size = 8

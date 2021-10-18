@@ -1,8 +1,8 @@
-Tile = _{
+tile = _{
   id = 1,
   new = function(this, type)
-    -- Type will refer to the type of tile this is
-    -- ID will refer to the actual sprite used
+    -- type will refer to the type of tile this is
+    -- id will refer to the actual sprite used
     if type == 1 then
       this.id = 1
     elseif type == 2 then
@@ -11,16 +11,16 @@ Tile = _{
   end,
   draw = function(this)
     spr(1)
-    -- love.graphics.setColor(1, 1, 1)
-    -- local reference = TILES[this.id].frame
-    -- WE LIVIN
-    -- local quad = love.graphics.newQuad(
+    -- love.graphics.setcolor(1, 1, 1)
+    -- local reference = tiles[this.id].frame
+    -- we livin
+    -- local quad = love.graphics.newquad(
     --   reference.x,
     --   reference.y,
     --   reference.w,
     --   reference.h,
-    --   tileset:getWidth(),
-    --   tileset:getHeight()
+    --   tileset:getwidth(),
+    --   tileset:getheight()
     -- )
     -- love.graphics.draw(tileset, quad)
   end

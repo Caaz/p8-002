@@ -1,23 +1,23 @@
-World = _{
+world = _{
   new = function(this)
     this:clear_world()
   end,
   update = function()
   end,
   clear_world = function(this)
-    -- Sets the entire world to walls
+    -- sets the entire world to walls
     this.tiles = {}
-    for x = 1, WORLD_SIZE do
+    for x = 1, world_size do
       this.tiles[x] = {}
-      for y = 1, WORLD_SIZE do
-        this.tiles[x][y] = Tile(2)
+      for y = 1, world_size do
+        this.tiles[x][y] = tile(2)
       end
     end
   end,
   draw = function(this)
     forxy(this.tiles, function(tile, x, y)
-      local tx = x*TILE_SIZE-TILE_SIZE
-      local ty = y*TILE_SIZE-TILE_SIZE
+      local tx = x*tile_size-tile_size
+      local ty = y*tile_size-tile_size
       camera(-tx, -ty)
       tile:draw()
     end)
