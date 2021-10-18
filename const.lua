@@ -1,0 +1,2 @@
+WORLD_SIZE = 16
+TILE_SIZE = 8
