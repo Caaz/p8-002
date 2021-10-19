@@ -1,17 +1,15 @@
 _.states['game'] = {
   init = function(this)
+    printh("Game start")
     this.world = world{}
     this.player = player{
-      world=world
+      world=this.world
     }
   end,
   update = function(this)
     forall({this.world,this.player}, 'update')
   end,
   draw = function(this)
-    foreach({this.world,this.player}, function(element)
-      camera()
-      element:draw()
-    end)
+    forall({this.world,this.player}, 'draw')
   end
 }
