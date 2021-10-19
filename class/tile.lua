@@ -9,19 +9,7 @@ tile = _{
       this.id = 2
     end
   end,
-  draw = function(this)
-    spr(1)
-    -- love.graphics.setcolor(1, 1, 1)
-    -- local reference = tiles[this.id].frame
-    -- we livin
-    -- local quad = love.graphics.newquad(
-    --   reference.x,
-    --   reference.y,
-    --   reference.w,
-    --   reference.h,
-    --   tileset:getwidth(),
-    --   tileset:getheight()
-    -- )
-    -- love.graphics.draw(tileset, quad)
+  draw = function(this,x,y)
+    spr(1,x,y)
   end
 }

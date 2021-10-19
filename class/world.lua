@@ -18,8 +18,7 @@ world = _{
     forxy(this.tiles, function(tile, x, y)
       local tx = x*tile_size-tile_size
       local ty = y*tile_size-tile_size
-      camera(-tx, -ty)
-      tile:draw()
+      tile:draw(tx,ty)
     end)
   end
 }
