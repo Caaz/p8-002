@@ -1,13 +1,24 @@
 pico-8 cartridge // http://www.pico-8.com
 version 33
 __lua__
+-- daniel caaz - 2021
+-->8
+-- library
 #include const.lua
-#include lib/ichor.lua
+#include lib/table/merge.lua
 #include lib/table/forxy.lua
+#include lib/table/forall.lua
+#include lib/ichor.lua
+-->8
+-- classes
 #include class/tile.lua
 #include class/world.lua
+#include class/player.lua
+-->8
+-- states
 #include states/game.lua
 _.state'game'
+
 __gfx__
 00000000333333330000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000333333330000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
