@@ -30,9 +30,9 @@ player = _{
       end
     end
     -- debug stuff
-    -- if btnp(4) then
-    --   this.world:create_path('player',this.x,this.y)
-    -- end
+    if btnp(4) then
+      this.world:add_mob(enemy{})
+    end
     -- movement smoothing
     foreach({'offset_x','offset_y'}, function(offset)
       if this[offset] != 0 then

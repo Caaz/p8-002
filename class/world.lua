@@ -1,9 +1,26 @@
 world = _{
   new = function(this)
     this:clear_world()
-    return this
+    this.mobs = {}
+    this.timers = {
+      timer{
+        timeout = mob_timer,
+        callback = function(timer)
+          this:step_mobs()
+          timer.time = 0
+        end
+      }
+    }
   end,
-  update = function()
+  update = function(this)
+    forall(this.timers,'update')
+    forall(this.mobs,'update',this)
+  end,
+  add_mob = function(this, mob)
+    add(this.mobs, mob)
+  end,
+  step_mobs = function(this)
+    forall(this.mobs,'step',this)
   end,
   clear_world = function(this)
     this.tiles = {}
@@ -54,5 +71,6 @@ world = _{
       local ty = y*tile_size-tile_size
       tile:draw(tx,ty)
     end)
+    forall(this.mobs,'draw')
   end
 }
