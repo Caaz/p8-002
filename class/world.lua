@@ -17,6 +17,7 @@ world = _{
     forall(this.mobs,'update',this)
   end,
   add_mob = function(this, mob)
+    mob.world = this
     add(this.mobs, mob)
   end,
   step_mobs = function(this)
@@ -37,6 +38,18 @@ world = _{
     end
     return {false, tile(1)}
   end,
+  is_free = function(this, x, y)
+    local tile = this:get_tile(x,y)
+    if not tile[1] or not tile[2].passable then
+      return false
+    end
+    for mob in all(this.mobs) do
+      if mob.x == x and mob.y == y then
+        return false
+      end
+    end
+    return true
+  end,
   clear_path = function(this, key)
     forxy(this.tiles, function(tile, x, y)
       tile.goals[key] = nil
@@ -44,7 +57,7 @@ world = _{
   end,
   create_path = function(this, key, x, y, distance)
     this:clear_path(key)
-    distance = distance and distance or 61
+    distance = distance and distance or pathing_limit
     path_queue = this:get_neighbors(x,y)
     while(distance > 0 and #path_queue > 0) do
       data = shift(path_queue)

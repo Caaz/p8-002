@@ -5,12 +5,14 @@ mob = _{
   offset_y = 0,
   sprite = 0,
   move = function(this,x,y)
-    old_x = this.x
-    old_y = this.y
-    this.x = x
-    this.y = y
-    this.offset_x += (old_x-this.x)*8
-    this.offset_y += (old_y-this.y)*8
+    if this.world:is_free(x,y) then
+      old_x = this.x
+      old_y = this.y
+      this.x = x
+      this.y = y
+      this.offset_x += (old_x-this.x)*8
+      this.offset_y += (old_y-this.y)*8
+    end
   end,
   update = function(this)
     foreach({'offset_x','offset_y'}, function(offset)
