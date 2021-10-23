@@ -14,9 +14,9 @@ player = _{
     elseif btnp(3) then
       this:move(this.x,this.y+1)
     end
-    -- if btnp(0) or btnp(1) or btnp(2) or btnp(3) then
-    --   this.world:create_path('player',this.x,this.y)
-    -- end
+    if btnp(0) or btnp(1) or btnp(2) or btnp(3) then
+      this:path_to(8,8)
+    end
     -- debug stuff
     if btnp(4) then
       this:path_to(8,8)

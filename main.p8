@@ -7,7 +7,7 @@ __lua__
 #include const.lua
 #include lib/vendor/unpack.lua
 #include lib/vendor/sort.lua
-#include lib/vendor/pow.lua
+-- #include lib/vendor/pow.lua
 #include lib/table/contains.lua
 #include lib/table/concat.lua
 #include lib/table/shift.lua

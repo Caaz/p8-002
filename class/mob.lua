@@ -25,13 +25,13 @@ mob = _{
     concat(this.search, neighbors)
     concat(this.marked, neighbors)
     comparator = function(a, b)
-      ad = pow(a.x - tx,2) + pow(a.y - ty,2)
-      bd = pow(b.x - tx,2) + pow(b.y - ty,2)
-      return ad < bd
+      ax = a.x - tx
+      ay = a.y - ty
+      bx = b.x - tx
+      by = b.y - ty
+      return ax*ax+ay*ay < bx*bx+by*by
     end
-    printh("Sorting "..#this.search.." tiles")
     sort(this.search, comparator)
-    printh("Sorted")
   end,
   path_to = function(this, tx, ty)
     this.path = {}
@@ -48,7 +48,7 @@ mob = _{
       add(this.path, this.path[#this.path].parent)
     end
     del(this.path,this)
-    printh("Path of "..#this.path.." length")
+    -- printh("Path of "..#this.path.." length")
     this.marked = {}
     this.search = {}
   end,
@@ -74,14 +74,9 @@ mob = _{
   end,
   draw_path = function(this)
     if #this.path > 0 then
-      printh("drawing path")
       foreach(this.path, function(tile)
-        -- pal(3,2)
         spr(1,(tile.x-1)*8,(tile.y-1)*8)
-        -- tile:draw()
-        -- pal()
       end)
-      printh("done")
     end
   end,
   draw = function(this)
