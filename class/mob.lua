@@ -16,7 +16,7 @@ mob = _{
     merge(this,args)
   end,
   update_search = function(this, parent, tx, ty)
-    local neighbors = this.world:get_neighbors(parent.x, parent.y, true)
+    local neighbors = this.world:get_neighbors(parent.x, parent.y, true, true)
     foreach(neighbors, function(tile)
       if contains(this.marked, tile) then
         del(neighbors, tile)
@@ -24,32 +24,32 @@ mob = _{
         tile.parent = parent
       end
     end)
+    if #neighbors <= 0 then return end
     concat(this.search, neighbors)
     concat(this.marked, neighbors)
-    comparator = function(a, b)
-      ax = a.x - tx
-      ay = a.y - ty
-      bx = b.x - tx
-      by = b.y - ty
-      return ax*ax+ay*ay < bx*bx+by*by
-    end
-    sort(this.search, comparator)
+    sort_by_distance(this.search, {x=tx,y=ty})
   end,
-  path_to = function(this, tx, ty)
+  path_to = function(this, tx, ty, limit)
+    limit = limit and limit or 128
     this.path = {}
     this:update_search(this, tx, ty)
     while true do
+      if #this.search == 0 then break end
       local tile = shift(this.search)
       if tile.x == tx and tile.y == ty then
         add(this.path, tile)
         break
       end
+      limit -= 1
+      if limit <= 0 then break end
       this:update_search(tile, tx, ty)
     end
-    while(this.path[#this.path].parent) do
-      add(this.path, this.path[#this.path].parent)
+    if #this.path > 0 then
+      while(this.path[#this.path].parent) do
+        add(this.path, this.path[#this.path].parent)
+      end
+      del(this.path,this)
     end
-    del(this.path,this)
     this.marked = {}
     this.search = {}
   end,
@@ -72,6 +72,7 @@ mob = _{
       this.offset_y += (old_y-this.y)*8
     end
   end,
+  -- step = function(this) end,
   update = function(this)
     foreach({'offset_x','offset_y'}, function(offset)
       if this[offset] != 0 then
@@ -86,7 +87,7 @@ mob = _{
     if #this.path > 0 then
       c = 1
       foreach(this.path, function(tile,i)
-        spr(18,(tile.x-1)*8,(tile.y-1)*8)
+        -- spr(18,(tile.x-1)*8,(tile.y-1)*8)
         print(c,(tile.x-1)*8,(tile.y-1)*8)
         c+=1
       end)
@@ -96,5 +97,6 @@ mob = _{
     x = this.x*tile_size-tile_size + this.offset_x
     y = this.y*tile_size-tile_size + this.offset_y
     spr(this.sprite, x, y)
+    this:draw_path()
   end
 }

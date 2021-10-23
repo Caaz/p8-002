@@ -13,6 +13,7 @@ world = _{
     }
   end,
   update = function(this)
+    -- printh()
     forall(this.timers,'update')
     forall(this.mobs,'update',this)
   end,
@@ -30,7 +31,8 @@ world = _{
       for y = 1, world_size do
         this.tiles[x][y] = _tile{
           x = x,
-          y = y
+          y = y,
+          id = rnd()>.7 and 2 or 1
         }
       end
     end
@@ -41,19 +43,22 @@ world = _{
     end
     return nil
   end,
-  is_free = function(this, x, y)
-    tile = this:get_tile(x,y)
+  mob_at = function(this, x, y)
+    for mob in all(this.mobs) do
+      if mob.x == x and mob.y == y then
+        return mob
+      end
+    end
+  end,
+  is_free = function(this, x, y, tile)
+    tile = tile and tile or this:get_tile(x,y)
     if not tile or not tile.passable then
       return false
     end
-    for mob in all(this.mobs) do
-      if mob.x == x and mob.y == y then
-        return false
-      end
-    end
+    if this:mob_at(tile.x, tile.y) then return false end
     return true
   end,
-  get_neighbors = function(this,x,y,remove_nil)
+  get_neighbors = function(this,x,y,remove_nil,only_free)
     -- wads order
     neighbors = {
       this:get_tile(x,y-1),
@@ -64,13 +69,18 @@ world = _{
     if remove_nil then
       for i = 0, count(neighbors,nil) do del(neighbors,nil) end
     end
+    if only_free then
+      foreach(neighbors, function(tile)
+        if not this:is_free(nil,nil,tile) then
+          del(neighbors, tile)
+        end
+      end)
+    end
     return neighbors
   end,
   draw = function(this)
-    forxy(this.tiles, function(tile, x, y)
-      local tx = x*tile_size-tile_size
-      local ty = y*tile_size-tile_size
-      tile:draw(tx,ty)
+    forxy(this.tiles, function(tile)
+      tile:draw()
     end)
     forall(this.mobs,'draw')
   end

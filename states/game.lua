@@ -2,14 +2,14 @@ _.states['game'] = {
   init = function(this)
     printh("Game start")
     this.world = world{}
-    this.player = player{
-      world=this.world
-    }
+    this.world:add_mob(player())
   end,
   update = function(this)
-    forall({this.world,this.player}, 'update')
+    this.world:update()
   end,
   draw = function(this)
-    forall({this.world,this.player}, 'draw')
+    cls()
+    this.world:draw()
+    print(stat(1)*100,0,0)
   end
 }
