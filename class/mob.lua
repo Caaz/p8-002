@@ -1,9 +1,57 @@
+mobs_created = 0
 mob = _{
   x = 1,
   y = 1,
   offset_x = 0,
   offset_y = 0,
   sprite = 0,
+  path = {},
+  search = {},
+  marked = {},
+  new = function(this,args)
+    mobs_created += 1
+    this.id = mobs_created
+    merge(this,args)
+  end,
+  update_search = function(this, parent, tx, ty)
+    neighbors = this.world:get_neighbors(parent.x, parent.y, true)
+    foreach(neighbors, function(tile)
+      if contains(this.marked, tile) then
+        del(neighbors, tile)
+      else
+        tile.parent = parent
+      end
+    end)
+    concat(this.search, neighbors)
+    concat(this.marked, neighbors)
+    comparator = function(a, b)
+      ad = pow(a.x - tx,2) + pow(a.y - ty,2)
+      bd = pow(b.x - tx,2) + pow(b.y - ty,2)
+      return ad < bd
+    end
+    printh("Sorting "..#this.search.." tiles")
+    sort(this.search, comparator)
+    printh("Sorted")
+  end,
+  path_to = function(this, tx, ty)
+    this.path = {}
+    this:update_search(this, tx, ty)
+    while true do
+      tile = shift(this.search)
+      if tile.x == tx and tile.y == ty then
+        add(this.path, tile)
+        break
+      end
+      this:update_search(tile, tx, ty)
+    end
+    while(this.path[#this.path].parent) do
+      add(this.path, this.path[#this.path].parent)
+    end
+    del(this.path,this)
+    printh("Path of "..#this.path.." length")
+    this.marked = {}
+    this.search = {}
+  end,
   move = function(this,x,y)
     if this.world:is_free(x,y) then
       old_x = this.x
@@ -24,8 +72,17 @@ mob = _{
       end
     end)
   end,
-  position = function(this)
-    return {x=this.x, y=this.y}
+  draw_path = function(this)
+    if #this.path > 0 then
+      printh("drawing path")
+      foreach(this.path, function(tile)
+        -- pal(3,2)
+        spr(1,(tile.x-1)*8,(tile.y-1)*8)
+        -- tile:draw()
+        -- pal()
+      end)
+      printh("done")
+    end
   end,
   draw = function(this)
     x = this.x*tile_size-tile_size + this.offset_x

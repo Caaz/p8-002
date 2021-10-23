@@ -14,12 +14,12 @@ player = _{
     elseif btnp(3) then
       this:move(this.x,this.y+1)
     end
-    if btnp(0) or btnp(1) or btnp(2) or btnp(3) then
-      this.world:create_path('player',this.x,this.y)
-    end
+    -- if btnp(0) or btnp(1) or btnp(2) or btnp(3) then
+    --   this.world:create_path('player',this.x,this.y)
+    -- end
     -- debug stuff
     if btnp(4) then
-      this.world:add_mob(enemy{})
+      this:path_to(8,8)
     end
     -- movement smoothing
     foreach({'offset_x','offset_y'}, function(offset)
@@ -38,5 +38,6 @@ player = _{
     local tx = this.x*tile_size-tile_size
     local ty = this.y*tile_size-tile_size
     spr(0,tx+this.offset_x,ty+this.offset_y)
+    this:draw_path()
   end
 }
