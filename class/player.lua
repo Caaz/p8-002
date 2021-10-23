@@ -19,7 +19,7 @@ player = _{
     end
     -- debug stuff
     if btnp(4) then
-      this:path_to(8,8)
+      this.world:add_mob(enemy{1,1})
     end
     -- movement smoothing
     foreach({'offset_x','offset_y'}, function(offset)
@@ -38,6 +38,6 @@ player = _{
     local tx = this.x*tile_size-tile_size
     local ty = this.y*tile_size-tile_size
     spr(0,tx+this.offset_x,ty+this.offset_y)
-    this:draw_path()
+    -- this:draw_path()
   end
 }

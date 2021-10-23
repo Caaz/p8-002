@@ -1,20 +1,22 @@
 mobs_created = 0
 mob = _{
-  x = 1,
-  y = 1,
-  offset_x = 0,
-  offset_y = 0,
-  sprite = 0,
-  path = {},
-  search = {},
-  marked = {},
   new = function(this,args)
     mobs_created += 1
     this.id = mobs_created
+    merge(this, {
+      x = 1,
+      y = 1,
+      offset_x = 1,
+      offset_y = 1,
+      sprite = 1,
+      path = {},
+      marked = {},
+      search = {}
+    })
     merge(this,args)
   end,
   update_search = function(this, parent, tx, ty)
-    neighbors = this.world:get_neighbors(parent.x, parent.y, true)
+    local neighbors = this.world:get_neighbors(parent.x, parent.y, true)
     foreach(neighbors, function(tile)
       if contains(this.marked, tile) then
         del(neighbors, tile)
@@ -37,7 +39,7 @@ mob = _{
     this.path = {}
     this:update_search(this, tx, ty)
     while true do
-      tile = shift(this.search)
+      local tile = shift(this.search)
       if tile.x == tx and tile.y == ty then
         add(this.path, tile)
         break
@@ -48,9 +50,17 @@ mob = _{
       add(this.path, this.path[#this.path].parent)
     end
     del(this.path,this)
-    -- printh("Path of "..#this.path.." length")
     this.marked = {}
     this.search = {}
+  end,
+  follow_path = function(this)
+    if #this.path > 0 then
+      local step = this.path[#this.path]
+      if this.world:is_free(step.x, step.y) then
+        this:move(step.x, step.y)
+        deli(this.path, #this.path)
+      end
+    end
   end,
   move = function(this,x,y)
     if this.world:is_free(x,y) then
@@ -74,8 +84,11 @@ mob = _{
   end,
   draw_path = function(this)
     if #this.path > 0 then
-      foreach(this.path, function(tile)
-        spr(1,(tile.x-1)*8,(tile.y-1)*8)
+      c = 1
+      foreach(this.path, function(tile,i)
+        spr(18,(tile.x-1)*8,(tile.y-1)*8)
+        print(c,(tile.x-1)*8,(tile.y-1)*8)
+        c+=1
       end)
     end
   end,
