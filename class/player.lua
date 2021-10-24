@@ -1,5 +1,15 @@
 player = _{
   extends = mob,
+  hostiles = function(this)
+    mobs = {}
+    -- build list of enemies
+    foreach(this.world.mobs, function(mob)
+      if mob != this then
+        add(mobs, mob)
+      end
+    end)
+    return mobs
+  end,
   update = function(this)
     if btnp(0) then
       this:move(this.x-1,this.y)
@@ -16,6 +26,14 @@ player = _{
     -- debug stuff
     if btnp(4) then
       this.world:add_mob(enemy{1,1})
+    end
+    if btnp(5) then
+      mobs = this:hostiles()
+      if #mobs > 0 then
+        mobs[1].health -= 1
+        printh('damaged?')
+        printh(mobs[1].health)
+      end
     end
     mob.update(this)
   end,

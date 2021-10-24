@@ -4,6 +4,7 @@ mob = _{
     mobs_created += 1
     this.id = mobs_created
     merge(this, {
+      health = 1,
       x = 1,
       y = 1,
       offset_x = 1,
@@ -30,7 +31,7 @@ mob = _{
     sort_by_distance(this.search, {x=tx,y=ty})
   end,
   path_to = function(this, tx, ty, limit)
-    limit = limit and limit or 128
+    limit = limit and limit or 128*(1-stat(1))
     this.path = {}
     this:update_search(this, tx, ty)
     while true do
@@ -82,12 +83,15 @@ mob = _{
         end
       end
     end)
+    if this.health <= 0 then
+      del(this.world.mobs, this)
+      del(this,this.world)
+    end
   end,
   draw_path = function(this)
     if #this.path > 0 then
       c = 1
       foreach(this.path, function(tile,i)
-        -- spr(18,(tile.x-1)*8,(tile.y-1)*8)
         print(c,(tile.x-1)*8,(tile.y-1)*8)
         c+=1
       end)
