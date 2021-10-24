@@ -6,7 +6,7 @@ merge(_tests, {
     local world = _world{}
     local mob_table = world.mobs
     local count = #world.mobs
-    world:add_mob(_mob())
+    world:add_mob({})
     assert(
       #mob_table == count + 1,
       "mob table didn't increase"
@@ -38,7 +38,7 @@ merge(_tests, {
   step_mobs = function()
     local world = _world{}
     local called = false
-    world:add_mob(_mob{
+    world:add_mob({
       step = function(this)
         called = true
       end
@@ -49,13 +49,24 @@ merge(_tests, {
   update_mobs = function()
     local world = _world{}
     local called = false
-    world:add_mob(_mob{
+    world:add_mob({
       update = function(this)
         called = true
       end
     })
     world:update()
     assert(called,"didn't call mobs update function")
+  end,
+  draw_mobs = function()
+    local world = _world{}
+    local called = false
+    world:add_mob({
+      draw = function(this)
+        called = true
+      end
+    })
+    world:draw()
+    assert(called,"didn't call mobs draw function")
   end,
   is_free = function()
     local world = _world()

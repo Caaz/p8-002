@@ -34,5 +34,10 @@ _.states['test'] = {
     stop()
   end,
 }
+_fixtures = {}
 _tests = _.states['test'].tests
 _coverage = _.states['test'].coverage
+
+-->8
+-- test overrides
+spr = function() end
