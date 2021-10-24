@@ -1,4 +1,4 @@
-timer = _{
+_timer = _{
   time = 0,
   timeout = 1,
   callback = function(this)

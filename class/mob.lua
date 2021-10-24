@@ -1,5 +1,5 @@
 mobs_created = 0
-mob = _{
+_mob = _{
   new = function(this,args)
     mobs_created += 1
     this.id = mobs_created
@@ -69,8 +69,8 @@ mob = _{
       old_y = this.y
       this.x = x
       this.y = y
-      this.offset_x += (old_x-this.x)*8
-      this.offset_y += (old_y-this.y)*8
+      this.offset_x += (old_x-x)*8
+      this.offset_y += (old_y-y)*8
     end
   end,
   -- step = function(this) end,

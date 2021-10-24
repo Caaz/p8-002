@@ -1,9 +1,9 @@
-world = _{
+_world = _{
   new = function(this)
     this:clear_world()
     this.mobs = {}
     this.timers = {
-      timer{
+      _timer{
         timeout = mob_timer,
         callback = function(timer)
           this:step_mobs()

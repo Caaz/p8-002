@@ -1,0 +1,40 @@
+_.states['test'] = {
+  tests = {},
+  fixtures = {},
+  coverage = {},
+  to_cover = {},
+  init = function(this)
+    cls()
+    print("loading coverage items...",5)
+    for cover, item in pairs(this.coverage) do
+      for k,v in pairs(item) do
+        if type(v) == 'function' then
+          local cover_key = cover..":"..k
+          add(this.to_cover, cover_key)
+          item[k] = function(...)
+            del(this.to_cover, cover_key)
+            v(...)
+          end
+        end
+      end
+    end
+    local total_cover = #this.to_cover
+    print(#this.to_cover.." items to cover!",12)
+    print("⧗ running tests!",5)
+    for k,v in pairs(this.tests) do
+      color(8)
+      v(this.fixtures)
+      print("♥ "..k,11)
+    end
+    print("♥ testing done!",12)
+    print("covered "..total_cover-#this.to_cover.."/"..total_cover.." coverage items",5)
+    print("missing... ",9)
+    foreach(this.to_cover, function(missed)
+      print(missed,8)
+    end)
+    stop()
+  end,
+}
+_tests = _.states['test'].tests
+_fixtures = _.states['test'].fixtures
+_coverage = _.states['test'].coverage

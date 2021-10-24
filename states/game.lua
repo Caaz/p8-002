@@ -1,8 +1,8 @@
 _.states['game'] = {
   init = function(this)
     printh("Game start")
-    this.world = world{}
-    this.world:add_mob(player())
+    this.world = _world{}
+    this.world:add_mob(_player())
   end,
   update = function(this)
     this.world:update()

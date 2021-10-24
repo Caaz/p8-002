@@ -1,5 +1,5 @@
-player = _{
-  extends = mob,
+_player = _{
+  extends = _mob,
   hostiles = function(this)
     mobs = {}
     -- build list of enemies
@@ -25,7 +25,7 @@ player = _{
     -- end
     -- debug stuff
     if btnp(4) then
-      this.world:add_mob(enemy{1,1})
+      this.world:add_mob(_enemy{1,1})
     end
     if btnp(5) then
       mobs = this:hostiles()
@@ -35,7 +35,7 @@ player = _{
         printh(mobs[1].health)
       end
     end
-    mob.update(this)
+    _mob.update(this)
   end,
   draw = function(this)
     local tx = this.x*tile_size-tile_size

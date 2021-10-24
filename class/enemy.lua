@@ -1,5 +1,5 @@
-enemy = _{
-  extends = mob,
+_enemy = _{
+  extends = _mob,
   sprite = 1,
   at_target = function(this, target)
     neighbors = this.world:get_neighbors(this.x, this.y)
