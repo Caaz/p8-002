@@ -1,6 +1,5 @@
 _.states['test'] = {
   tests = {},
-  fixtures = {},
   coverage = {},
   to_cover = {},
   init = function(this)
@@ -13,7 +12,7 @@ _.states['test'] = {
           add(this.to_cover, cover_key)
           item[k] = function(...)
             del(this.to_cover, cover_key)
-            v(...)
+            return v(...)
           end
         end
       end
@@ -23,18 +22,17 @@ _.states['test'] = {
     print("⧗ running tests!",5)
     for k,v in pairs(this.tests) do
       color(8)
-      v(this.fixtures)
+      v()
       print("♥ "..k,11)
     end
     print("♥ testing done!",12)
     print("covered "..total_cover-#this.to_cover.."/"..total_cover.." coverage items",5)
-    print("missing... ",9)
-    foreach(this.to_cover, function(missed)
-      print(missed,8)
-    end)
+    -- print("missing... ",9)
+    -- foreach(this.to_cover, function(missed)
+    --   print(missed,8)
+    -- end)
     stop()
   end,
 }
 _tests = _.states['test'].tests
-_fixtures = _.states['test'].fixtures
 _coverage = _.states['test'].coverage

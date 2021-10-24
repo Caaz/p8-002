@@ -1,16 +1,18 @@
 _world = _{
   new = function(this)
     this:clear_world()
-    this.mobs = {}
-    this.timers = {
-      _timer{
-        timeout = mob_timer,
-        callback = function(timer)
-          this:step_mobs()
-          timer.time = 0
-        end
+    merge(this, {
+      mobs = {},
+      timers = {
+        _timer{
+          timeout = mob_timer,
+          callback = function(timer)
+            this:step_mobs()
+            timer.time = 0
+          end
+        }
       }
-    }
+    })
   end,
   update = function(this)
     -- printh()
@@ -32,7 +34,7 @@ _world = _{
         this.tiles[x][y] = _tile{
           x = x,
           y = y,
-          id = rnd()>.7 and 2 or 1
+          id = 1
         }
       end
     end
@@ -51,7 +53,7 @@ _world = _{
     end
   end,
   is_free = function(this, x, y, tile)
-    tile = tile and tile or this:get_tile(x,y)
+    local tile = tile and tile or this:get_tile(x,y)
     if not tile or not tile.passable then
       return false
     end

@@ -2,6 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 33
 __lua__
 -- daniel caaz - 2021
+-- https://github.com/Caaz/p8-002
 -->8
 -- library
 #include const.lua
