@@ -1,8 +1,8 @@
 merge(_coverage,{
   world=_world
 })
-merge(_tests, {
-  mobs_add_properly = function()
+_tests['world'] = {
+  function()
     local world = _world{}
     local mob_table = world.mobs
     local count = #world.mobs
@@ -16,7 +16,7 @@ merge(_tests, {
       "mob doesn't have world reference set"
     )
   end,
-  world_initializes = function()
+  function()
     local world = _world{}
     assert(
       #world.mobs == 0,
@@ -27,7 +27,7 @@ merge(_tests, {
       "timer table not initialized"
     )
   end,
-  get_tile = function()
+  function()
     local world = _world{}
     local tile = world:get_tile(1,1)
     assert(
@@ -35,7 +35,7 @@ merge(_tests, {
       "get tile didn't match expected value"
     )
   end,
-  step_mobs = function()
+  function()
     local world = _world{}
     local called = false
     world:add_mob({
@@ -46,7 +46,7 @@ merge(_tests, {
     world:step_mobs()
     assert(called,"didn't call mobs step function")
   end,
-  update_mobs = function()
+  function()
     local world = _world{}
     local called = false
     world:add_mob({
@@ -57,7 +57,7 @@ merge(_tests, {
     world:update()
     assert(called,"didn't call mobs update function")
   end,
-  draw_mobs = function()
+  function()
     local world = _world{}
     local called = false
     world:add_mob({
@@ -68,11 +68,14 @@ merge(_tests, {
     world:draw()
     assert(called,"didn't call mobs draw function")
   end,
-  is_free = function()
+  function()
     local world = _world()
     assert(
       world:is_free(1,1),
       "empty tile wasn't free"
     )
-  end
-})
+  end,
+  -- function()
+  --   assert(false)
+  -- end
+}

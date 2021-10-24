@@ -21,9 +21,13 @@ _.states['test'] = {
     print(#this.to_cover.." items to cover!",12)
     print("⧗ running tests!",5)
     for k,v in pairs(this.tests) do
-      color(8)
-      v()
-      print("♥ "..k,11)
+      color(11)
+      ?k..":\0"
+      foreach(v, function(test)
+        test()
+        ?".\0"
+      end)
+      ?"♥"
     end
     print("♥ testing done!",12)
     print("covered "..total_cover-#this.to_cover.."/"..total_cover.." coverage items",5)
