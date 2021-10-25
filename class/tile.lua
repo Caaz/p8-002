@@ -6,9 +6,9 @@ _tile = _{
       this.passable = true
     end
   end,
-  -- to_string = function(this)
-  --   return this.x..", "..this.y..": "..this.id
-  -- end,
+  to_string = function(this)
+    return this.x..", "..this.y..": "..this.id
+  end,
   draw = function(this)
     local tx = this.x*tile_size-tile_size
     local ty = this.y*tile_size-tile_size

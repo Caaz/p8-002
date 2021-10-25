@@ -16,6 +16,7 @@ __lua__
 #include lib/table/forxy.lua
 #include lib/table/forall.lua
 #include lib/ichor.lua
+#include lib/debug.lua
 -->8
 -- classes
 #include helpers.lua
@@ -31,10 +32,10 @@ __lua__
 _.state'game'
 -->8
 -- tests
-#include states/test.lua
-#include tests/mob.lua
-#include tests/world.lua
-_.state'test'
+-- #include states/test.lua
+-- #include tests/mob.lua
+-- #include tests/world.lua
+-- _.state'test'
 
 -- #include lib/vendor/putaflipinit.lua
 __gfx__

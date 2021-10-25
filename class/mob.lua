@@ -17,7 +17,7 @@ _mob = _{
     merge(this,args)
   end,
   update_search = function(this, parent, tx, ty)
-    local neighbors = this.world:get_neighbors(parent.x, parent.y, true, true)
+    local neighbors = this.world:get_neighbors(parent.x, parent.y, true)
     foreach(neighbors, function(tile)
       if contains(this.marked, tile) then
         del(neighbors, tile)
@@ -36,6 +36,7 @@ _mob = _{
     this:update_search(this, tx, ty)
     while true do
       if #this.search == 0 then break end
+      debugp(this.search)
       local tile = shift(this.search)
       if tile.x == tx and tile.y == ty then
         add(this.path, tile)
@@ -59,7 +60,7 @@ _mob = _{
       local step = this.path[#this.path]
       if this.world:is_free(step.x, step.y) then
         this:move(step.x, step.y)
-        deli(this.path, #this.path)
+        deli(this.path)
       end
     end
   end,

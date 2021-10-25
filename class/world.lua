@@ -60,23 +60,21 @@ _world = _{
     if this:mob_at(tile.x, tile.y) then return false end
     return true
   end,
-  get_neighbors = function(this,x,y,remove_nil,only_free)
+  get_neighbors = function(this,x,y,only_free)
     -- wads order
-    neighbors = {
+    local neighbors = {
       this:get_tile(x,y-1),
       this:get_tile(x-1,y),
       this:get_tile(x+1,y),
       this:get_tile(x,y+1)
     }
-    if remove_nil then
-      for i = 0, count(neighbors,nil) do del(neighbors,nil) end
-    end
+    for i = 0, count(neighbors,nil) do del(neighbors,nil) end
     if only_free then
-      foreach(neighbors, function(tile)
+      for tile in all(neighbors) do
         if not this:is_free(nil,nil,tile) then
-          del(neighbors, tile)
+          del(neighbors,tile)
         end
-      end)
+      end
     end
     return neighbors
   end,

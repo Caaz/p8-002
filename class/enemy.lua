@@ -16,7 +16,7 @@ _enemy = _{
     if this:at_target(player) then
       return
     end
-    targets = this.world:get_neighbors(player.x, player.y, true, true)
+    targets = this.world:get_neighbors(player.x, player.y, true)
     if #targets > 0 then
       sort_by_distance(targets, this)
       target = targets[1]

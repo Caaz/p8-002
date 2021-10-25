@@ -75,7 +75,18 @@ _tests['world'] = {
       "empty tile wasn't free"
     )
   end,
-  -- function()
-  --   assert(false)
-  -- end
+  function()
+    local world = _world()
+    local neighbors = world:get_neighbors(2,2)
+    assert(
+      #neighbors == 4,
+      "get_neighbors did not return a table of 4"
+    )
+    world:add_mob(_mob{x=2,y=1})
+    neighbors = world:get_neighbors(1,1, true)
+    assert(
+      #neighbors == 1,
+      "get_neighbors did not omit taken tiles"
+    )
+  end
 }
