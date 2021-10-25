@@ -2,6 +2,9 @@ _enemy = _{
   extends = _mob,
   sprite = 1,
   at_target = function(this, target)
+    if this.x == target.x and this.y == target.y then
+      return true
+    end
     neighbors = this.world:get_neighbors(this.x, this.y)
     there = false
     foreach(neighbors, function(tile)

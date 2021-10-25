@@ -1,6 +1,4 @@
-merge(_coverage,{
-  world=_world
-})
+_coverage['world'] = _world
 _tests['world'] = {
   function()
     local world = _world{}

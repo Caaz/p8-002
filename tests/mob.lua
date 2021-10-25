@@ -1,6 +1,4 @@
-merge(_coverage,{
-  mob=_mob
-})
+_coverage['mob'] = _mob
 _tests['mob'] = {
   function()
     mobs = {_mob(),_mob()}
