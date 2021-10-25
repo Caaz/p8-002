@@ -30,8 +30,8 @@ _mob = _{
     concat(this.marked, neighbors)
     sort_by_distance(this.search, {x=tx,y=ty})
   end,
-  path_to = function(this, tx, ty, limit)
-    limit = limit and limit or 128*(1-stat(1))
+  path_to = function(this, tx, ty, skip_throttle)
+    limit = 128*(skip_throttle and 1 or (1-stat(1)))
     this.path = {}
     this:update_search(this, tx, ty)
     while true do

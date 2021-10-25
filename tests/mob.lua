@@ -16,7 +16,7 @@ _tests['mob'] = {
   function()
     local mob, world = _mob(), _world()
     world:add_mob(mob)
-    mob:path_to(1,5)
+    mob:path_to(1,5,true)
     assert(
       #mob.path == 4,
       "expected path length of 4, got "..#mob.path
