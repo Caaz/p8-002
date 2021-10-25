@@ -32,10 +32,10 @@ __lua__
 _.state'game'
 -->8
 -- tests
--- #include states/test.lua
--- #include tests/mob.lua
--- #include tests/world.lua
--- _.state'test'
+#include states/test.lua
+#include tests/mob.lua
+#include tests/world.lua
+_.state'test'
 
 -- #include lib/vendor/putaflipinit.lua
 __gfx__

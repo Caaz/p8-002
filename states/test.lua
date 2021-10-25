@@ -31,10 +31,12 @@ _.states['test'] = {
     end
     print("♥ testing done!",12)
     print("covered "..total_cover-#this.to_cover.."/"..total_cover.." coverage items",5)
-    print("missing... ",9)
-    foreach(this.to_cover, function(missed)
-      print(missed,8)
-    end)
+    if #this.to_cover > 0 then
+      print("missing... ",9)
+      foreach(this.to_cover, function(missed)
+        print(missed,8)
+      end)
+    end
     stop()
   end,
 }

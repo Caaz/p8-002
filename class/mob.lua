@@ -36,7 +36,6 @@ _mob = _{
     this:update_search(this, tx, ty)
     while true do
       if #this.search == 0 then break end
-      debugp(this.search)
       local tile = shift(this.search)
       if tile.x == tx and tile.y == ty then
         add(this.path, tile)
