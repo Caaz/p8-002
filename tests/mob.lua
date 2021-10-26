@@ -8,12 +8,6 @@ _tests['mob'] = {
     )
   end,
   function()
-    -- not much to assert here.
-    local mob = _mob()
-    mob:update()
-    mob:draw()
-  end,
-  function()
     local mob, world = _mob(), _world()
     world:add_mob(mob)
     mob:path_to(1,5,true)

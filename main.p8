@@ -36,6 +36,7 @@ _.state'game'
 #include tests/mob.lua
 #include tests/world.lua
 #include tests/enemy.lua
+#include tests/player.lua
 _.state'test'
 
 -- #include lib/vendor/putaflipinit.lua

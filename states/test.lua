@@ -5,9 +5,10 @@ _.states['test'] = {
   init = function(this)
     cls()
     print("loading coverage items...",5)
+    local omitlist = {"draw", "update", "draw_path"}
     for cover, item in pairs(this.coverage) do
       for k,v in pairs(item) do
-        if type(v) == 'function' then
+        if type(v) == 'function' and not contains(omitlist,k) then
           local cover_key = cover..":"..k
           add(this.to_cover, cover_key)
           item[k] = function(...)
