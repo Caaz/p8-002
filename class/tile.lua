@@ -1,6 +1,10 @@
 _tile = _{
   id = 1,
   new = function(this, args)
+    merge(
+      this,
+      { x = 1, y = 1 }
+    )
     merge(this,args)
     if this.id == 1 then
       this.passable = true
