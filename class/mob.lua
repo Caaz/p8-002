@@ -73,6 +73,11 @@ _mob = _{
       this.offset_y += (old_y-y)*8
     end
   end,
+  real_position = function(this)
+    x = this.x*tile_size-tile_size + this.offset_x
+    y = this.y*tile_size-tile_size + this.offset_y
+    return x, y
+  end,
   -- step = function(this) end,
   update = function(this)
     foreach({'offset_x','offset_y'}, function(offset)
@@ -98,9 +103,7 @@ _mob = _{
     end
   end,
   draw = function(this)
-    x = this.x*tile_size-tile_size + this.offset_x
-    y = this.y*tile_size-tile_size + this.offset_y
+    x, y = this:real_position()
     spr(this.sprite, x, y)
-    this:draw_path()
   end
 }

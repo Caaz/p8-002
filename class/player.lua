@@ -10,6 +10,11 @@ _player = _{
     end)
     return mobs
   end,
+  get_target = function(this)
+    mobs = this:hostiles()
+    sort_by_distance(mobs,this)
+    return mobs[1]
+  end,
   update = function(this)
     if btnp(0) then
       this:move(this.x-1,this.y)
@@ -28,18 +33,23 @@ _player = _{
       this.world:add_mob(_enemy{1,1})
     end
     if btnp(5) then
-      mobs = this:hostiles()
-      if #mobs > 0 then
-        mobs[1].health -= 1
+      target = this:get_target()
+      if target then
+        target.health -= 1
         printh('damaged?')
-        printh(mobs[1].health)
+        printh(target.health)
       end
     end
     _mob.update(this)
   end,
   draw = function(this)
-    local tx = this.x*tile_size-tile_size
-    local ty = this.y*tile_size-tile_size
-    spr(0,tx+this.offset_x,ty+this.offset_y)
+    x, y = this:real_position()
+    spr(0,x,y)
+    target = this:get_target()
+    if target then
+      x, y = target:real_position()
+      printh()
+      spr(2,x,y)
+    end
   end
 }
