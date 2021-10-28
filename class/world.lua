@@ -78,8 +78,19 @@ _world = _{
     end
     return neighbors
   end,
+  for_visible_tiles = function(this, callback)
+    local tx, ty = flr(camera.x/8)-8, flr(camera.y/8)-8
+    for x = tx, tx+17 do
+      for y = ty, ty+17 do
+        tile = this:get_tile(x,y)
+        if tile then
+          callback(tile)
+        end
+      end
+    end
+  end,
   draw = function(this)
-    forxy(this.tiles, function(tile)
+    this:for_visible_tiles(function(tile)
       tile:draw()
     end)
     forall(this.mobs,'draw')

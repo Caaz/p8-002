@@ -16,6 +16,7 @@ __lua__
 #include lib/table/forxy.lua
 #include lib/table/forall.lua
 #include lib/ichor.lua
+#include lib/camera.lua
 #include lib/debug.lua
 -->8
 -- classes
