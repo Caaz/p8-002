@@ -20,3 +20,14 @@ function sort_by_distance(points, target)
     return ax*ax+ay*ay < bx*bx+by*by
   end)
 end
+
+
+-- frame counter, cpu display, clear screen
+frame = 0
+function _draw()
+  frame += 1
+  cls()
+  _.main'draw'
+  camera()
+  print(flr(stat(1)*100),0,0,7)
+end

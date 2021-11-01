@@ -63,8 +63,8 @@ _mob = _{
       end
     end
   end,
-  move = function(this,x,y)
-    if this.world:is_free(x,y) then
+  move = function(this,x,y,ignore_check)
+    if ignore_check or this.world:is_free(x,y) then
       old_x = this.x
       old_y = this.y
       this.x = x

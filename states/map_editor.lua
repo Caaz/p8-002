@@ -1,8 +1,8 @@
-_.states['game'] = {
+_.states['map_editor'] = {
   init = function(this)
-    printh("game start")
+    printh("editor start")
     this.world = _world{}
-    this.world:add_mob(_player())
+    this.world:add_mob(_cursor())
   end,
   update = function(this)
     this.world:update()
