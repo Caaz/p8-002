@@ -45,6 +45,12 @@ _world = _{
     end
     return nil
   end,
+  set_tile = function(this, x, y, id)
+    if this.tiles[x] and this.tiles[x][y] then
+      this.tiles[x][y] = _tile{x=x,y=y,id=id}
+    end
+    return nil
+  end,
   mob_at = function(this, x, y)
     for mob in all(this.mobs) do
       if mob.x == x and mob.y == y then

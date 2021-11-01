@@ -1,27 +1,21 @@
 _cursor = _{
   extends = _mob,
-  new = function(this)
-    _mob.new(this, {
-      sprite = 3
-    })
-  end,
   update = function(this)
-    -- printh("update")
     if btnp(0) then
-      -- printh("left")
       this:move(this.x-1,this.y)
     elseif btnp(1) then
       this:move(this.x+1,this.y)
-      printh("right")
     elseif btnp(2) then
       this:move(this.x,this.y-1)
     elseif btnp(3) then
       this:move(this.x,this.y+1)
     end
+    if btnp(4) then
+      this.world:set_tile(this.x,this.y,2)
+    end
     _mob.update(this)
   end,
   move = function(this, x, y)
-    -- if x < 0 or y < 0 then
     _mob.move(this, max(min(x,world_size),1), max(min(y,world_size),1), true)
   end,
   draw = function(this)
