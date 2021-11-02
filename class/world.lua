@@ -47,7 +47,9 @@ _world = _{
   end,
   set_tile = function(this, x, y, id)
     if this.tiles[x] and this.tiles[x][y] then
-      this.tiles[x][y] = _tile{x=x,y=y,id=id}
+      tile = _tile{x=x,y=y,id=id}
+      this.tiles[x][y] = tile
+      return tile
     end
     return nil
   end,

@@ -1,9 +1,13 @@
 _tile = _{
-  id = 1,
   new = function(this, args)
     merge(
       this,
-      { x = 1, y = 1 }
+      {
+        id = 1,
+        sprite = 16,
+        x = 1,
+        y = 1
+      }
     )
     merge(this,args)
     if this.id == 1 then
@@ -16,6 +20,6 @@ _tile = _{
   draw = function(this)
     local tx = this.x*tile_size-tile_size
     local ty = this.y*tile_size-tile_size
-    spr(15+this.id,tx,ty)
+    spr(this.sprite,tx,ty)
   end
 }

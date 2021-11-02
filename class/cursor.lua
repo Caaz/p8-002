@@ -11,12 +11,12 @@ _cursor = _{
       this:move(this.x,this.y+1)
     end
     if btnp(4) then
-      this.world:set_tile(this.x,this.y,2)
+      this.editor:set_tile(this.x,this.y)
     end
     _mob.update(this)
   end,
   move = function(this, x, y)
-    _mob.move(this, max(min(x,world_size),1), max(min(y,world_size),1), true)
+    _mob.move(this, mid(x,world_size,1), mid(y,world_size,1), true)
   end,
   draw = function(this)
     x, y = this:real_position()
