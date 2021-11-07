@@ -72,7 +72,6 @@ function spr(id, x, y)
   love.graphics.rectangle('fill', x, y, tile_size, tile_size)
 end
 
--- camera = love.graphics.translate
 function camera(x,y)
   love.graphics.translate(-x,-y)
 end
