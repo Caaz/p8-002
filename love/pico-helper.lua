@@ -13,9 +13,6 @@ function stop(msg)
   print(msg)
   love.event.quit(0)
 end
-
-function cls() end
-function color() end
 function all(t)
   local i = 0
   local n = #t
@@ -52,3 +49,30 @@ function count(t,item)
 end
 
 flr = math.floor
+
+
+function noop() end
+cls = noop
+color = noop
+btnp = noop
+-- drawing functions
+last_line_x = 0
+last_line_y = 0
+function line(x1, y1, x2, y2, ...)
+  if not x2 then
+    x2, y2 = x1, y1
+    x1, y1 = last_line_x, last_line_y
+  end
+  love.graphics.line(x1,y1,x2,y2)
+  last_line_x, last_line_y = x2, y2
+end
+
+function spr(id, x, y)
+  -- love.graphics.line(x1,y1,x2,y2)
+  love.graphics.rectangle('fill', x, y, tile_size, tile_size)
+end
+
+-- camera = love.graphics.translate
+function camera(x,y)
+  love.graphics.translate(-x,-y)
+end
