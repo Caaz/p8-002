@@ -6,7 +6,7 @@ _timer = _{
   end,
   -- timeout, callback
   update = function(this)
-    this.time += 1
+    this.time = this.time + 1
     if this.timeout <= this.time then
       this.callback(this)
     end

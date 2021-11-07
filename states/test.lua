@@ -23,12 +23,12 @@ _.states['test'] = {
     print("⧗ running tests!",5)
     for k,v in pairs(this.tests) do
       color(11)
-      ?k..":\0"
+      print(k..":\0")
       foreach(v, function(test)
         test()
-        ?".\0"
+        print(".\0")
       end)
-      ?"♥"
+      print("♥")
     end
     print("♥ testing done!",12)
     print("covered "..total_cover-#this.to_cover.."/"..total_cover.." coverage items",5)

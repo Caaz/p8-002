@@ -8,7 +8,7 @@ _tests['player'] = {
     local hostiles = player:hostiles()
     assert(
       #hostiles == 1,
-      "hostiles length larger than expected"
+      "hostiles length not expected, got "..#hostiles
     )
     assert(
       hostiles[1] == enemy,

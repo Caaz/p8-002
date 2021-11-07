@@ -29,8 +29,8 @@ __lua__
 #include class/player.lua
 -->8
 -- states
-#include states/game.lua
-_.state'game'
+-- #include states/game.lua
+-- _.state'game'
 -->8
 -- map editor
 #include class/cursor.lua
@@ -38,13 +38,13 @@ _.state'game'
 _.state'map_editor'
 -->8
 -- tests
--- #include states/test.lua
--- #include tests/mob.lua
--- #include tests/world.lua
--- #include tests/enemy.lua
--- #include tests/player.lua
--- #include tests/tile.lua
--- _.state'test'
+#include states/test.lua
+#include tests/mob.lua
+#include tests/world.lua
+#include tests/enemy.lua
+#include tests/player.lua
+#include tests/tile.lua
+_.state'test'
 
 -- #include lib/vendor/putaflipinit.lua
 __gfx__

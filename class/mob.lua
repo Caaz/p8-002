@@ -1,7 +1,7 @@
 mobs_created = 0
 _mob = _{
   new = function(this,args)
-    mobs_created += 1
+    mobs_created = mobs_created + 1
     this.id = mobs_created
     merge(this, {
       health = 1,
@@ -41,7 +41,7 @@ _mob = _{
         add(this.path, tile)
         break
       end
-      limit -= 1
+      limit = limit - 1
       if limit <= 0 then break end
       this:update_search(tile, tx, ty)
     end
@@ -69,8 +69,8 @@ _mob = _{
       old_y = this.y
       this.x = x
       this.y = y
-      this.offset_x += (old_x-x)*8
-      this.offset_y += (old_y-y)*8
+      this.offset_x = this.offset_x + (old_x-x)*8
+      this.offset_y = this.offset_y + (old_y-y)*8
     end
   end,
   real_position = function(this)
@@ -81,7 +81,7 @@ _mob = _{
   -- step = function(this) end,
   update = function(this)
     foreach({'offset_x','offset_y'}, function(offset)
-      if this[offset] != 0 then
+      if not this[offset] == 0 then
         this[offset] = this[offset]/1.6
         if abs(this[offset]) <= .5 then
           this[offset] = 0
@@ -98,7 +98,7 @@ _mob = _{
       c = 1
       foreach(this.path, function(tile,i)
         print(c,(tile.x-1)*8,(tile.y-1)*8)
-        c+=1
+        c=c+1
       end)
     end
   end,

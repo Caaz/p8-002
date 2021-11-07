@@ -1,0 +1,5 @@
+cmd: love
+name: Run
+sh: false
+args:
+  - .

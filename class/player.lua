@@ -1,10 +1,10 @@
 _player = _{
   extends = _mob,
   hostiles = function(this)
-    mobs = {}
+    local mobs = {}
     -- build list of enemies
     foreach(this.world.mobs, function(mob)
-      if mob != this then
+      if not (mob == this) then
         add(mobs, mob)
       end
     end)
@@ -35,7 +35,7 @@ _player = _{
     if btnp(5) then
       target = this:get_target()
       if target then
-        target.health -= 1
+        target.health = target.health - 1
         printh('damaged?')
         printh(target.health)
       end

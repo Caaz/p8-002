@@ -20,7 +20,6 @@ _.states['map_editor'] = {
         end
       end)
     end
-    -- this.world:get_neighbors(x,y)
   end,
 
   get_bitfield = function(this, tile)
