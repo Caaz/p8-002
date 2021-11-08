@@ -19,15 +19,16 @@ _cursor = _{
     _mob.move(this, mid(x,world_size,1), mid(y,world_size,1), true)
   end,
   draw = function(this)
-    x, y = this:real_position()
+    local x, y = this:real_position()
     color(flr(frame/10) % 2 == 0 and 7 or 6)
-    line(x+1,y-1,x-1,y-1)
-    line(x-1,y+1)
-    line(x+6,y-1,x+8,y-1)
-    line(x+8,y+1)
-    line(x+8,y+6,x+8,y+8)
-    line(x+6,y+8)
-    line(x+1,y+8,x-1,y+8)
-    line(x-1,y+6)
+    local inner, inner_b = flr(tile_size - tile_size/4), flr(tile_size/4)-1
+    line(x+inner_b,y-1,x-1,y-1)
+    line(x-1,y+inner_b)
+    line(x+inner,y-1,x+tile_size,y-1)
+    line(x+tile_size,y+inner_b)
+    line(x+tile_size,y+inner,x+tile_size,y+tile_size)
+    line(x+inner,y+tile_size)
+    line(x+inner_b,y+tile_size,x-1,y+tile_size)
+    line(x-1,y+inner)
   end,
 }
