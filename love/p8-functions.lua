@@ -59,3 +59,4 @@ end
 
 add = table.insert
 deli = table.remove
+flr = math.floor
