@@ -37,6 +37,15 @@ When exporting a usable spritesheet for love to pick up, I use the following set
 #### Running
 After exporting the spritesheet, things should be usable. Simply use `love .` within the directory to run the game.
 
+## Unit Testing
+Unit testing ensures things are going smoothly between love2d and pico-8!
+
+### Testing in Love2D
+Simply running the game with test appended will run the unit tests. `love . test`
+
+### Testing in pico-8
+A little more annoying, uncomment the test imports and state setting lines in `main.p8` and run it.
+
 ## Code style
 While it's clear I'm not following any guides for coding style, I am attempting to follow some rules of thumb
 - Avoid long lines
@@ -47,6 +56,7 @@ While it's clear I'm not following any guides for coding style, I am attempting 
   - Pico-8 adds some fancy syntax to lua to cut down on tokens and make tiny code a little more possible. Since this will work in love2D as well, we need to avoid using those. This will suck for pico-8, but will probably be less effort in the long run.
 - Maybe actually comment on things
   - I'm not great at explaining things, but since this is going to be a bit more open to the public to show off, I should make an attempt here.
+- Actually use the Unit test features.
 
 ## To-do
 - [ ] Do comments apply to character limits in pico-8? (Probably)
