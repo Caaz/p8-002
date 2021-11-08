@@ -1,0 +1,6 @@
+[submodule "lib/caaz"]
+	path = lib/caaz
+	url = git@github.com:caaz/pico8-lib.git
+[submodule "lib/json"]
+	path = lib/json
+	url = git@github.com:rxi/json.lua.git
