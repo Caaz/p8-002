@@ -4,20 +4,20 @@ __lua__
 -- daniel caaz - 2021
 -- https://github.com/Caaz/p8-002
 -->8
--- library
+-- library stuff
 #include const.lua
-#include lib/vendor/unpack.lua
-#include lib/vendor/sort.lua
--- #include lib/vendor/pow.lua
-#include lib/table/contains.lua
-#include lib/table/concat.lua
-#include lib/table/shift.lua
-#include lib/table/merge.lua
-#include lib/table/forxy.lua
-#include lib/table/forall.lua
-#include lib/ichor.lua
-#include lib/camera.lua
-#include lib/debug.lua
+#include lib/caaz/vendor/unpack.lua
+#include lib/caaz/vendor/sort.lua
+-- #include lib/caaz/vendor/pow.lua
+#include lib/caaz/table/contains.lua
+#include lib/caaz/table/concat.lua
+#include lib/caaz/table/shift.lua
+#include lib/caaz/table/merge.lua
+#include lib/caaz/table/forxy.lua
+#include lib/caaz/table/forall.lua
+#include lib/caaz/ichor.lua
+#include lib/caaz/camera.lua
+#include lib/caaz/debug.lua
 -->8
 -- classes
 #include helpers.lua
@@ -46,7 +46,7 @@ _.state'map_editor'
 #include tests/tile.lua
 _.state'test'
 
--- #include lib/vendor/putaflipinit.lua
+-- #include lib/caaz/vendor/putaflipinit.lua
 __gfx__
 00110000000880000066660077000077000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00011000008888000500005070000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
