@@ -7,7 +7,7 @@ _.states['map_editor'] = {
   update = function(this)
     this.world:update()
     local x,y = this.world.mobs[1]:real_position()
-    camera:focus(x+4,y+4)
+    camera:focus(x+tile_size/2,y+tile_size/2)
     camera:update()
   end,
   set_tile = function(this, x, y)

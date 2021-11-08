@@ -74,14 +74,14 @@ _mob = _{
     end
   end,
   real_position = function(this)
-    x = this.x*tile_size-tile_size + this.offset_x
-    y = this.y*tile_size-tile_size + this.offset_y
+    local x = this.x*tile_size-tile_size + this.offset_x
+    local y = this.y*tile_size-tile_size + this.offset_y
     return x, y
   end,
   -- step = function(this) end,
   update = function(this)
     foreach({'offset_x','offset_y'}, function(offset)
-      if not this[offset] == 0 then
+      if not (this[offset] == 0) then
         this[offset] = this[offset]/1.6
         if abs(this[offset]) <= .5 then
           this[offset] = 0

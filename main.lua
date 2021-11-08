@@ -46,5 +46,8 @@ function love.load(args)
   end
 end
 
-love.update = _update
+love.update = function()
+  _update()
+  clear_buttons()
+end
 love.draw = _draw

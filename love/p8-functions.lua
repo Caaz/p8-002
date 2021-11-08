@@ -60,3 +60,7 @@ end
 add = table.insert
 deli = table.remove
 flr = math.floor
+function mid(a,b,c)
+  return math.max(math.min(a,b),c)
+end
+abs = math.abs

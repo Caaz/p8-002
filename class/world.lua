@@ -87,15 +87,18 @@ _world = _{
     return neighbors
   end,
   for_visible_tiles = function(this, callback)
-    local tx, ty = flr(camera.x/8)-8, flr(camera.y/8)-8
-    for x = tx, tx+17 do
-      for y = ty, ty+17 do
+    local tx, ty = flr((camera.x-screen_width/2)/tile_size), flr((camera.y-screen_height/2)/tile_size)
+    local max_w, max_h = screen_width/tile_size + 1, screen_height/tile_size + 1
+    printh("w "..ty.."-"..ty+max_h)
+    for x = tx, tx+max_w do
+      for y = ty, ty+max_h do
         tile = this:get_tile(x,y)
         if tile then
           callback(tile)
         end
       end
     end
+    -- forxy(this.tiles, callback)
   end,
   draw = function(this)
     this:for_visible_tiles(function(tile)
