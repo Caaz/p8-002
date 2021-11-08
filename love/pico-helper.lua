@@ -67,9 +67,34 @@ function line(x1, y1, x2, y2, ...)
   last_line_x, last_line_y = x2, y2
 end
 
+
+json = require('lib.json.json')
+-- Essentially, a tile that can draw itself.
+local spritesheet = love.graphics.newImage("assets/tileset.png")
+local file = io.open("assets/tileset.json")
+local json_string = file:read("*all")
+file:close()
+local object = json.decode(json_string)
+
+TILES = object.frames
+
 function spr(id, x, y)
+
+  love.graphics.setColor(1, 1, 1)
+  local reference = TILES["None"].frame
+  -- WE LIVIN
+  local quad = love.graphics.newQuad(
+    reference.x,
+    reference.y,
+    reference.w,
+    reference.h,
+    spritesheet:getWidth(),
+    spritesheet:getHeight()
+  )
+  love.graphics.draw(spritesheet, quad, x, y)
+
   -- love.graphics.line(x1,y1,x2,y2)
-  love.graphics.rectangle('fill', x, y, tile_size, tile_size)
+  -- love.graphics.rectangle('fill', x, y, tile_size, tile_size)
 end
 
 function camera(x,y)

@@ -1,5 +1,6 @@
 require('love.pico-helper')
 require('const')
+require('const_love')
 require('helpers')
 -- library stuff
 require('lib.caaz.ichor')
@@ -42,10 +43,3 @@ end
 
 love.update = _update
 love.draw = _draw
--- function love.update(delta)
---   _.main('update', delta)
--- end
---
--- function love.draw()
---   _.main'draw'
--- end
