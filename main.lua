@@ -1,8 +1,8 @@
-require('love.pico-helper')
+json = require('lib.json.json')
+require('love.pico8')
 require('const')
 require('const_love')
 require('helpers')
--- library stuff
 require('lib.caaz.ichor')
 require('lib.caaz.table.merge')
 require('lib.caaz.table.contains')
@@ -22,23 +22,28 @@ require('class.enemy')
 require('class.player')
 require('class.cursor')
 -- states
--- require('states.test')
 require('states.map_editor')
 require('states.game')
 -- testing
--- require('tests.mob')
--- require('tests.world')
--- require('tests.enemy')
--- require('tests.player')
--- require('tests.tile')
 
 
 local internal_resolution = {1200,720}
 
 print("hello world")
-function love.load()
+function love.load(args)
   love.window.setMode(internal_resolution[1], internal_resolution[2], {resizable=false})
-  _.state'map_editor'
+  if #args > 0 and args[1] == "test" then
+    require('states.test')
+    require('tests.mob')
+    require('tests.world')
+    require('tests.enemy')
+    require('tests.player')
+    require('tests.tile')
+    print = printh
+    _.state'test'
+  else
+    _.state'map_editor'
+  end
 end
 
 love.update = _update

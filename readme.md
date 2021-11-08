@@ -55,4 +55,5 @@ While it's clear I'm not following any guides for coding style, I am attempting 
 - [ ] Draw sprites in layers to allow for effects not winding up behind tiles
 - [ ] Love2d support at higher resolutions
   - [ ] Probably some form of letterboxing and zooming
+  - [ ] Rename tilesheet to spritesheet?
 - [ ] Gameplay?
